@@ -1,0 +1,29 @@
+url: https://material.google.com/style/color.html
+
+script:
+var x = Array.prototype.slice.call(document.querySelectorAll(".color-palette > .color-group"));
+x.pop();
+
+var y = [];
+
+x.forEach(function (item) {
+    var m = item.querySelector('ul > li:first-child > .name').textContent;
+    var s = Array.prototype.slice.call(item.querySelectorAll('ul > li:not(:first-child)'));
+    
+    s = s.map(function (itemJ) {
+        return {
+            'isTextDark': itemJ.classList.contains('dark'),
+            'subColor': itemJ.querySelector('.hex').textContent,
+        };
+    });
+    
+    y.push({
+        'mainColor': m,
+        'children': s
+    });
+});
+
+console.log(JSON.stringify(y));
+
+script (oneline):
+var x=Array.prototype.slice.call(document.querySelectorAll(".color-palette > .color-group"));x.pop();var y=[];x.forEach(function(r){var e=r.querySelector("ul > li:first-child > .name").textContent,l=Array.prototype.slice.call(r.querySelectorAll("ul > li:not(:first-child)"));l=l.map(function(r){return{isTextDark:r.classList.contains("dark"),subColor:r.querySelector(".hex").textContent}}),y.push({mainColor:e,children:l})}),console.log(JSON.stringify(y));
